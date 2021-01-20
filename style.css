@@ -8,8 +8,8 @@
 
 body {
     padding-top: 75px;
-    background-color: #1C1C1C;
     font-family: 'Yantramanav', sans-serif;
+    color: #282828;
 }
 
 ul {
@@ -32,19 +32,23 @@ header {
     background-color: #282828;
     color: white;
     text-transform: uppercase;
+    z-index: 10;
 }
 
 nav, nav ul {
     width: 100%;
     height: 100%;
-}
-
-nav ul {
     display: flex;
-    padding: 0 20px;
 }
 
-nav li:first-child a {
+nav {
+    align-items: center;
+    padding: 0 20px;
+    position: relative;
+}
+
+#logo {
+    padding: 0 20px;
     display: flex;
 }
 
@@ -71,7 +75,7 @@ nav li {
     background-color: #F88FFF;
 }
 
-nav li:not(:first-child):not(#donate)::before, #donate a::before {
+nav li:not(#donate)::before, #donate a::before {
     content: "";
     position: absolute;
     top: 0;
@@ -83,11 +87,11 @@ nav li:not(:first-child):not(#donate)::before, #donate a::before {
     transition: opacity .35s;
 }
 
-nav li:not(:first-child):not(#donate)::before {
+nav li:not(#donate)::before {
     background-color: #1C1C1C;
 }
 
-nav li:not(:first-child):not(#donate):hover::before, #donate a:hover::before {
+nav li:not(#donate):hover::before, #donate a:hover::before {
     opacity: 1;
 }
 
@@ -98,6 +102,71 @@ nav li a {
     align-items: center;
 }
 
+nav li::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    height: 5px;
+    width: 100%;
+    background-color: #8AF7FF;
+    opacity: 0;
+    transition: opacity .35s;
+}
+
+#active-page::after {
+    opacity: 1;
+}
+
+nav ul:hover #active-page::after {
+    opacity: 0;
+}
+
+nav li:hover::after, #active-page:hover::after {
+    opacity: 1 !important;
+}
+
+#hamburger-btn {
+    display: none;
+}
+
+label[for=hamburger-btn] {
+    position: absolute;
+    top: 35px;
+    left: 35px;
+    transform: translateY(-50%);
+    display: none;
+}
+
+label[for=hamburger-btn] span {
+    display: inline-block;
+}
+
+#hamburger-stroke, #hamburger-stroke::before, #hamburger-stroke::after {
+    height: 4px;
+    width: 35px;
+    border-radius: 2px;
+    background-color: white;
+}
+
+#hamburger-stroke::before, #hamburger-stroke::after {
+    content: "";
+    position: absolute;
+    transition: top .2s .2s, bottom .2s .2s, transform .2s;
+}
+
+#hamburger-stroke {
+    position: relative;
+    transition: background-color 0s .2s;
+}
+
+#hamburger-stroke::before {
+    bottom: 12px;
+}
+
+#hamburger-stroke::after {
+    top: 12px;
+}
+
 /* ----- Body ----- */
 
 .btn {
@@ -106,4 +175,114 @@ nav li a {
     padding: 8px 20px;
     border-radius: 5px;
     font-size: 1.2em;
+}
+
+h1 {
+    font-family: 'Luckiest Guy', cursive;
+    width: 100%;
+    text-align: center;
+    padding: 0 70px;
+}
+
+.background-video {
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.background-video::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    bottom: -10px;
+    left: -10px;
+    background-image: url(https://cdn2.unrealengine.com/14br-consoles-1920x1080-wlogo-1920x1080-432974386.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(2px);
+}
+
+.background-video h1 {
+    font-size: 64px;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-shadow: 0 0 5px white;
+}
+
+/* ----- Medias queries ----- */
+
+@media screen and (max-width: 750px) {
+    header {
+        height: auto;
+    }
+    label[for=hamburger-btn] {
+        display: inline-block;
+    }
+    nav, nav ul {
+        flex-direction: column;
+    }
+    nav {
+        padding: 0 35px;
+    }
+    nav ul {
+        height: 0;
+        overflow: hidden;
+        display: block;
+        font-size: 21px;
+        transition: height .3s;
+    }
+    nav li {
+        height: auto;
+    }
+    nav li a {
+        padding: 0;
+    }
+    #logo {
+        margin: 12.5px 0;
+    }
+    #logo img {
+        height: 45px;
+    }
+    #donate a {
+        font-size: 1em;
+        padding: 0;
+        background-color: unset;
+        font-weight: normal;
+    }
+    nav li {
+        margin: 4px 0;
+    }
+    nav li::before, nav li::after {
+        display: none;
+    }
+    #hamburger-btn:checked ~ ul {
+        height: 185px;
+    }
+    #hamburger-btn:checked + label #hamburger-stroke {
+        background-color: rgba(255, 255, 255, 0);
+    }
+    #hamburger-btn:checked + label #hamburger-stroke::before {
+        transition: top .2s, bottom .2s, transform .2s .2s;
+        bottom: 0;
+        transform: rotate(45deg);
+    }
+    #hamburger-btn:checked + label #hamburger-stroke::after {
+        transition: top .2s, bottom .2s, transform .2s .2s;
+        top: 0;
+        transform: rotate(-45deg);
+    }
+    #active-page::before {
+        content: "";
+        position: static !important;
+        display: inline-block !important;
+        height: .6em !important;
+        width: .6em !important;
+        background-color: #8AF7FF !important;
+        opacity: 1 !important;
+        margin-right: 5px !important;
+    }
 }
