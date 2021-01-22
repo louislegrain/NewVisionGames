@@ -10,6 +10,7 @@ let mobile;
 refreshMobileVar();
 let headerHeight;
 refreshHeaderHeight();
+let lastVisibleSection;
 
 document.querySelector('[href="#home"]').parentNode.id = 'active-page';
 
@@ -64,8 +65,12 @@ window.addEventListener('resize', function () {
 });
 
 window.addEventListener('scroll', function () {
-    document.getElementById('active-page').id = '';
-    navbarLinksLi[checkVisibleSection()].id = 'active-page';
+    let checkVisibleSectionId = checkVisibleSection();
+    if (lastVisibleSection !== checkVisibleSectionId) {
+        document.getElementById('active-page').removeAttribute('id');
+        navbarLinksLi[checkVisibleSectionId].id = 'active-page';
+        lastVisibleSection = checkVisibleSectionId;
+    }
 });
 
 for (let hash of document.querySelectorAll('a[href^="#"]')) {
