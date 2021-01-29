@@ -35,9 +35,7 @@ window.addEventListener('resize', function () {
     refreshHeaderHeight();
 });
 
-
-
-// Start IntersectionObserver
+// IntersectionObserver
 const options = {
     root: null,
     rootMargin: '-50% 0px -50% 0px'
@@ -59,9 +57,6 @@ if ('IntersectionObserver' in window) {
         observer.observe(object);
     });
 }
-// End IntersectionObserver
-
-
 
 for (let hash of document.querySelectorAll('a[href^="#"]')) {
     hash.addEventListener('click', function (e) {
@@ -74,46 +69,3 @@ for (let hash of document.querySelectorAll('a[href^="#"]')) {
         });
     });
 }
-
-
-// Start other solution
-
-// const sections = document.querySelectorAll('section');
-// const navbarLinks = document.querySelectorAll('nav a[href^="#"]');
-// let navbarLinksLi = [];
-// for (let navLink of navbarLinks) {
-//     navbarLinksLi.push(navLink.parentNode);
-// }
-// let array = [];
-// refreshArray();
-// let lastVisibleSection;
-
-// function refreshArray() {
-//     array = [];
-//     for (let section of sections) {
-//         array.push(section.offsetTop - window.innerHeight / 2);
-//     }
-// }
-
-// function checkVisibleSection() {
-//     let returnResult;
-//     for (let i = 0; i < array.length; i++) {
-//         if (window.scrollY > array[i]) {
-//             returnResult = i;
-//         } else {
-//             return returnResult;
-//         }
-//     }
-//     return returnResult;
-// }
-
-// window.addEventListener('scroll', function () {
-//     let checkVisibleSectionId = checkVisibleSection();
-//     if (lastVisibleSection !== checkVisibleSectionId) {
-//         document.getElementById('active-page').removeAttribute('id');
-//         navbarLinksLi[checkVisibleSectionId].id = 'active-page';
-//         lastVisibleSection = checkVisibleSectionId;
-//     }
-// });
-
-// End other solution

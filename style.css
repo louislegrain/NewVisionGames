@@ -25,6 +25,26 @@ a {
     color: inherit;
 }
 
+strong {
+    font-weight: bold;
+}
+
+em {
+    font-style: italic;
+}
+
+.important {
+    font-weight: bold !important;
+    font-size: 1.45em !important;
+    margin: 20px 0;
+}
+
+.subtitle {
+    font-weight: bold !important;
+    font-size: 1.2em !important;
+    margin: 10px 0 5px;
+}
+
 /* ----- Header ----- */
 
 header {
@@ -70,16 +90,9 @@ nav li {
 
 #donate a {
     height: auto;
-    overflow: hidden;
-    position: relative;
-    z-index: 1;
 }
 
-#donate a::before {
-    background-color: #F88FFF;
-}
-
-nav li:not(#donate)::before, #donate a::before {
+nav li:not(#donate)::before {
     content: "";
     position: absolute;
     top: 0;
@@ -95,7 +108,7 @@ nav li:not(#donate)::before {
     background-color: #1C1C1C;
 }
 
-nav li:not(#donate):hover::before, #donate a:hover::before {
+nav li:not(#donate):hover::before {
     opacity: 1;
 }
 
@@ -110,8 +123,9 @@ nav li::after {
     content: "";
     position: absolute;
     bottom: 0;
+    left: 0;
+    right: 0;
     height: 5px;
-    width: 100%;
     background-color: #8AF7FF;
     opacity: 0;
     transition: opacity .35s;
@@ -180,13 +194,44 @@ label[for=hamburger-btn] span {
     padding: 8px 20px;
     border-radius: 5px;
     font-size: 1.2em;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity .35s;
+    background-color: #F88FFF;
+}
+
+.btn:hover::before {
+    opacity: 1;
 }
 
 h1 {
     font-family: 'Luckiest Guy', cursive;
-    width: 100%;
     text-align: center;
-    padding: 0 70px;
+    font-size: 64px;
+    text-shadow: 0 0 5px white;
+    padding: 0 60px;
+}
+
+h1::after {
+    content: "";
+    height: 3px;
+    width: 88%;
+    display: block;
+    margin: -3px auto 25px;
+    background-color: #1C1C1C;
+    border-radius: 1.5px;
 }
 
 #home {
@@ -206,20 +251,111 @@ h1 {
     right: -10px;
     bottom: -10px;
     left: -10px;
-    background-image: url(https://cdn2.unrealengine.com/14br-consoles-1920x1080-wlogo-1920x1080-432974386.jpg);
+    background-image: url(https://cdn.cloudflare.steamstatic.com/steam/apps/345370/ss_058ca72c66aac8a3cb88e518ffd75c86c363efe6.1920x1080.jpg?t=1597353918);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    filter: blur(2px);
+    filter: blur(2px) brightness(0.9);
     z-index: -1;
 }
 
-#home h1 {
-    font-size: 64px;
-    text-shadow: 0 0 5px white;
+section:not(#home) {
+    padding: 25px 120px;
+}
+
+h2 {
+    font-family: 'Dancing Script', cursive;
+    text-align: center;
+    font-size: 60px;
+    margin-bottom: 40px;
+}
+
+.float-container {
+    width: 100%;
+    overflow: hidden;
+}
+
+.float-container > img {
+    float: left;
+    width: 50%;
+    margin: 0 30px 15px 0;
+}
+
+.float-container {
+    font-size: 20px;
+}
+
+.float-container p {
+    text-align: justify;
+}
+
+.icons {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.icons > li:not(:last-child) {
+    margin-right: 75px;
+}
+
+.icons ul {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.icons ul li:not(:last-child) {
+    margin-right: 25px;
+}
+
+.icons img {
+    height: 45px;
 }
 
 /* ----- Medias queries ----- */
+
+@media screen and (max-width: 1450px) {
+    .icons {
+        clear: left;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    h1 {
+        font-size: 56px;
+    }
+    h2 {
+        font-size: 48px;
+    }
+    .btn {
+        font-size: 1em;
+    }
+    .float-container {
+        font-size: 16px;
+    }
+    .icons img {
+        height: 32px;
+    }
+    .icons ul li:not(:last-child) {
+        margin-right: 15px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    h1 {
+        font-size: 46px;
+        margin-bottom: 10px;
+        padding: 0 30px;
+    }
+    h1::after {
+        display: none;
+    }
+    h2 {
+        font-size: 40px;
+    }
+    nav {
+        font-size: 15px;
+    }
+}
 
 @media screen and (max-width: 750px) {
     header {
@@ -293,5 +429,32 @@ h1 {
         background-color: #8AF7FF !important;
         opacity: 1 !important;
         margin-right: 5px !important;
+    }
+    section:not(#home) {
+        padding: 25px 75px;
+    }
+    .float-container > img {
+        float: none;
+        width: 65%;
+        margin: 0 auto 40px;
+        display: block;
+    }
+    .icons {
+        flex-direction: column;
+    }
+    .icons > li:not(:last-child) {
+        margin-right: 0;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .float-container > img {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    section:not(#home) {
+        padding: 25px 45px;
     }
 }
