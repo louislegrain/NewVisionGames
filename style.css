@@ -272,7 +272,7 @@ h2 {
 
 .float-container {
     width: 100%;
-    overflow: hidden;
+    overflow-y: hidden;
 }
 
 .float-container > img {
@@ -389,6 +389,64 @@ aside p {
     text-align: center;
 }
 
+/* ----- Footer ----- */
+
+h3 {
+    font-size: 30px;
+    margin-bottom: 25px;
+}
+
+footer {
+    color: white;
+    background-color: #282828;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px 20px;
+}
+
+footer ul {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+footer li {
+    margin: 5px 18px;
+    flex-shrink: 0;
+}
+
+footer li a, footer label {
+    display: flex;
+    align-items: center;
+}
+
+footer li a > *, footer label > * {
+    margin: 0 6px;
+}
+
+footer svg {
+    height: 45px;
+    width: 45px;
+    transition: transform .5s ease-out;
+}
+
+footer svg path, footer svg circle {
+    transition: fill .35s .2s;
+}
+
+footer a:hover svg, footer label:hover svg {
+    transform: rotate(360deg);
+}
+
+footer a:hover svg path, footer label:hover svg path {
+    fill: #282828;
+}
+
+footer a:hover svg circle, footer label:hover svg circle {
+    fill: white;
+}
+
 /* ----- Medias queries ----- */
 
 @media screen and (max-width: 1450px) {
@@ -404,6 +462,10 @@ aside p {
     h2 {
         font-size: 48px;
     }
+    h3 {
+        font-size: 26px;
+        margin-bottom: 15px;
+    }
     .btn {
         font-size: 1em;
     }
@@ -418,6 +480,12 @@ aside p {
     }
     .icons ul li:not(:last-child) {
         margin-right: 10px;
+    }
+}
+
+@media screen and (max-width: 860px) {
+    footer li {
+        margin: 5px 6px;
     }
 }
 
@@ -534,6 +602,15 @@ aside p {
         border-radius: 0;
         min-height: 100vh;
     }
+    footer {
+        padding: 15px 20px;
+    }
+    footer li {
+        margin: 5px;
+    }
+    footer a span, footer label span {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 600px) {
@@ -552,5 +629,16 @@ aside p {
     aside h2 {
         padding: 0;
         margin-top: 42px;
+    }
+    h3 {
+        font-size: 24px;
+        margin-bottom: 8px;
+    }
+    footer li {
+        margin: 5px 3px;
+    }
+    footer svg {
+        height: 40px;
+        width: 40px;
     }
 }
