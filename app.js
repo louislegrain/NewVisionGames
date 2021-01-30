@@ -1,4 +1,6 @@
 const sections = document.querySelectorAll('section');
+const donateCheckbox = document.getElementById('donate');
+const aside = document.querySelector('aside');
 let mobile;
 refreshMobileVar();
 let headerHeight;
@@ -6,7 +8,11 @@ refreshHeaderHeight();
 document.querySelector('[href="#home"]').parentNode.id = 'active-page';
 
 window.addEventListener('load', function () {
-    if (document.location.hash) {
+    if (document.location.hash === '#donate') {
+        document.location.hash = '';
+        donateCheckbox.checked = true;
+        checkboxChange();
+    } else if (document.location.hash) {
         window.scrollTo({
             top: document.querySelector(document.location.hash).offsetTop - headerHeight,
             behavior: 'smooth'
@@ -27,6 +33,14 @@ function refreshHeaderHeight() {
         headerHeight = 70;
     } else {
         headerHeight = 75;
+    }
+}
+
+function checkboxChange() {
+    if (donateCheckbox.checked) {
+        document.body.style.overflowY = 'hidden';
+    } else {
+        document.body.style.overflowY = 'visible';
     }
 }
 
@@ -69,3 +83,18 @@ for (let hash of document.querySelectorAll('a[href^="#"]')) {
         });
     });
 }
+
+document.querySelector('#open-donate-menu label').addEventListener('click', function () {
+    document.getElementById('hamburger-btn').checked = false;
+});
+
+donateCheckbox.addEventListener('change', function () {
+    checkboxChange();
+});
+
+aside.addEventListener('click', function (e) {
+    if (e.target === aside) {
+        donateCheckbox.checked = false;
+        checkboxChange();
+    }
+});

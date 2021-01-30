@@ -23,6 +23,7 @@
     <meta name="theme-color" content="#ffffff">
 </head>
 <body style="padding-top: 0;">
+    <input type="checkbox" id="donate">
     <header>
         <nav>
             <input type="checkbox" id="hamburger-btn">
@@ -33,7 +34,7 @@
                 <li><a href="#about">A propos</a></li>
                 <li><a href="#download">Télécharger</a></li>
                 <li><a href="/en/">En</a></li>
-                <li id="donate"><a class="btn" href="/">Faire un don</a></li>
+                <li id="open-donate-menu"><label class="btn" for="donate">Faire un don</label></li>
             </ul>
         </nav>
     </header>
@@ -86,6 +87,16 @@
     <footer>
         <p style="margin-top: 50px; font-size: 2.5rem; text-align: center; padding: 20px 0; background-color: #282828; color: white;">Footer</p>
     </footer>
+    <aside>
+        <div class="big-container">
+            <label for="donate">Fermer</label>
+            <h2>Faire un don</h2>
+            <p>
+                <strong>Aidez</strong> la mini-entreprise et les enfants atteints de cancer en faisant <strong>un don</strong> !
+            </p>
+            <div style="width: 95%; height: 400px; border: 2px solid black; margin: 30px 0;">[A ajouter] iFrame de paiement par PayPal</div>
+        </div>
+    </aside>
     <script src="/app.js"></script>
 </body>
 </html>

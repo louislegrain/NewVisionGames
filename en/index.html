@@ -23,6 +23,7 @@
     <meta name="theme-color" content="#ffffff">
 </head>
 <body style="padding-top: 0;">
+    <input type="checkbox" id="donate">
     <header>
         <nav>
             <input type="checkbox" id="hamburger-btn">
@@ -33,7 +34,7 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#download">Download</a></li>
                 <li><a href="/">Fr</a></li>
-                <li id="donate"><a class="btn" href="/">Donate</a></li>
+                <li id="open-donate-menu"><label class="btn" for="donate">Donate</label></li>
             </ul>
         </nav>
     </header>
@@ -69,15 +70,15 @@
                 <li>
                     <p class="subtitle">Mobile</p>
                     <ul>
-                        <li><a href="/"><img src="/ressources/en/badges/app_store.svg" alt="Badge App Store"></a></li>
-                        <li><a href="/"><img src="/ressources/en/badges/play_store.png" alt="Badge Play Store"></a></li>
+                        <li><a href="/"><img src="/ressources/en/badges/app_store.svg" alt="App Store badge"></a></li>
+                        <li><a href="/"><img src="/ressources/en/badges/play_store.png" alt="Play Store badge"></a></li>
                     </ul>
                 </li>
                 <li>
                     <p class="subtitle">Computer</p>
                     <ul>
-                        <li><a href="/"><img src="/ressources/badges/logo_apple.svg" alt="Logo Apple"></a></li>
-                        <li><a href="/"><img src="/ressources/badges/logo_windows.svg" alt="Logo Windows"></a></li>
+                        <li><a href="/"><img src="/ressources/badges/logo_apple.svg" alt="Apple logo"></a></li>
+                        <li><a href="/"><img src="/ressources/badges/logo_windows.svg" alt="Windows logo"></a></li>
                     </ul>
                 </li>
             </ul>
@@ -86,6 +87,16 @@
     <footer>
         <p style="margin-top: 50px; font-size: 2.5rem; text-align: center; padding: 20px 0; background-color: #282828; color: white;">Footer</p>
     </footer>
+    <aside>
+        <div class="big-container">
+            <label for="donate">Close</label>
+            <h2>Donate</h2>
+            <p>[A traduire !]
+                <strong>Aidez</strong> la mini-entreprise et les enfants atteints de cancer en faisant <strong>un don</strong> !
+            </p>
+            <div style="width: 95%; height: 400px; border: 2px solid black; margin: 30px 0;">[A ajouter] iFrame de paiement par PayPal</div>
+        </div>
+    </aside>
     <script src="/app.js"></script>
 </body>
 </html>

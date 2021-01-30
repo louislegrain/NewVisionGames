@@ -45,6 +45,10 @@ em {
     margin: 10px 0 5px;
 }
 
+label {
+    cursor: pointer;
+}
+
 /* ----- Header ----- */
 
 header {
@@ -83,16 +87,12 @@ nav li {
     position: relative;
 }
 
-#donate {
+#open-donate-menu {
     margin-left: auto;
     margin-right: 20px;
 }
 
-#donate a {
-    height: auto;
-}
-
-nav li:not(#donate)::before {
+nav li:not(#open-donate-menu)::before {
     content: "";
     position: absolute;
     top: 0;
@@ -104,11 +104,11 @@ nav li:not(#donate)::before {
     transition: opacity .35s;
 }
 
-nav li:not(#donate)::before {
+nav li:not(#open-donate-menu)::before {
     background-color: #1C1C1C;
 }
 
-nav li:not(#donate):hover::before {
+nav li:not(#open-donate-menu):hover::before {
     opacity: 1;
 }
 
@@ -143,7 +143,7 @@ nav li:hover::after, #active-page:hover::after {
     opacity: 1 !important;
 }
 
-#hamburger-btn {
+#hamburger-btn, #donate {
     display: none;
 }
 
@@ -311,6 +311,84 @@ h2 {
     height: 45px;
 }
 
+aside {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .5);
+    z-index: 11;
+    overflow-y: scroll;
+    display: none;
+}
+
+aside .big-container {
+    width: 100%;
+    max-width: 750px;
+    margin: 60px auto;
+    padding: 10px 30px;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+#donate:checked ~ aside {
+    display: block;
+    animation: smooth-bg-appear .3s forwards;
+}
+
+@keyframes smooth-bg-appear {
+    from {
+        background-color: rgba(0, 0, 0, 0);
+    }
+    to {
+        background-color: rgba(0, 0, 0, .5);
+    }
+}
+
+#donate:checked ~ aside .big-container {
+    animation: box-appear .6s cubic-bezier(0, 0, 0.2, 1);
+}
+
+@keyframes box-appear {
+    from {
+        transform: translateY(100vh);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+aside label[for=donate] {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    font-size: 22px;
+    background-color: #E9E9E9;
+    padding: 6px 16px;
+    border-radius: 6px;
+    transition: background-color .35s;
+}
+
+aside label[for=donate]:hover {
+    background-color: #D6D6D6;
+}
+
+aside h2 {
+    width: 100%;
+    padding: 14px 90px;
+    margin-bottom: 0;
+}
+
+aside p {
+    font-size: 22px;
+    text-align: center;
+}
+
 /* ----- Medias queries ----- */
 
 @media screen and (max-width: 1450px) {
@@ -332,11 +410,14 @@ h2 {
     .float-container {
         font-size: 16px;
     }
+    aside p, aside label[for=donate] {
+        font-size: 20px;
+    }
     .icons img {
-        height: 32px;
+        height: 40px;
     }
     .icons ul li:not(:last-child) {
-        margin-right: 15px;
+        margin-right: 10px;
     }
 }
 
@@ -351,6 +432,9 @@ h2 {
     }
     h2 {
         font-size: 40px;
+    }
+    aside p, aside label[for=donate] {
+        font-size: 16px;
     }
     nav {
         font-size: 15px;
@@ -389,13 +473,13 @@ h2 {
     #logo img {
         height: 45px;
     }
-    #donate a {
+    #open-donate-menu label {
         font-size: 1em;
         padding: 0;
         background-color: unset;
         font-weight: normal;
     }
-    #donate a::before {
+    #open-donate-menu label::before {
         display: none;
     }
     nav li {
@@ -445,6 +529,11 @@ h2 {
     .icons > li:not(:last-child) {
         margin-right: 0;
     }
+    aside .big-container {
+        margin: 0;
+        border-radius: 0;
+        min-height: 100vh;
+    }
 }
 
 @media screen and (max-width: 600px) {
@@ -456,5 +545,12 @@ h2 {
 @media screen and (max-width: 500px) {
     section:not(#home) {
         padding: 25px 45px;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    aside h2 {
+        padding: 0;
+        margin-top: 42px;
     }
 }
