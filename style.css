@@ -11,7 +11,6 @@ html {
 }
 
 body {
-    padding-top: 75px;
     font-family: 'Yantramanav', sans-serif;
     color: #282828;
 }
@@ -23,6 +22,10 @@ ul {
 a {
     text-decoration: none;
     color: inherit;
+}
+
+a img {
+    border: none;
 }
 
 strong {
@@ -47,6 +50,32 @@ em {
 
 label {
     cursor: pointer;
+}
+
+.label-container {
+    display: flex;
+}
+
+.label-container:focus > span {
+    outline: dotted 1px;
+    outline: -webkit-focus-ring-color auto 1px;
+}
+
+.label-container:focus, .label-container > span:focus {
+    outline: none;
+}
+
+.ie-error {
+    text-align: center;
+    padding: 15px 20px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    z-index: 25;
+    background-color: #fff;
+    border: solid 4px red;
+    border-radius: 20px;
 }
 
 /* ----- Header ----- */
@@ -369,9 +398,12 @@ aside label[for=donate] {
     right: 14px;
     font-size: 22px;
     background-color: #E9E9E9;
-    padding: 6px 16px;
     border-radius: 6px;
     transition: background-color .35s;
+}
+
+aside label[for=donate] > span {
+    padding: 6px 16px;
 }
 
 aside label[for=donate]:hover {
@@ -416,12 +448,12 @@ footer li {
     flex-shrink: 0;
 }
 
-footer li a, footer label {
+footer li a, footer label > span {
     display: flex;
     align-items: center;
 }
 
-footer li a > *, footer label > * {
+footer li a > *, footer label > span > * {
     margin: 0 6px;
 }
 
@@ -541,13 +573,13 @@ footer a:hover svg circle, footer label:hover svg circle {
     #logo img {
         height: 45px;
     }
-    #open-donate-menu label {
+    #open-donate-menu label > span {
         font-size: 1em;
         padding: 0;
         background-color: unset;
         font-weight: normal;
     }
-    #open-donate-menu label::before {
+    #open-donate-menu label > span::before {
         display: none;
     }
     nav li {
@@ -608,7 +640,7 @@ footer a:hover svg circle, footer label:hover svg circle {
     footer li {
         margin: 5px;
     }
-    footer a span, footer label span {
+    footer a span, footer label span > span {
         display: none;
     }
 }

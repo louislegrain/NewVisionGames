@@ -7,11 +7,17 @@ let headerHeight;
 refreshHeaderHeight();
 document.querySelector('[href="#home"]').parentNode.id = 'active-page';
 
+const focusableElements = document.querySelectorAll('input, select, area, textarea, a, button, [tabindex]');
+const focusableElementsWithinAside = Array.from(document.querySelector('aside').querySelectorAll('input, select, area, textarea, a, button, [tabindex]'));
+let arrayTabIndex = [];
+for (let focusableElement of focusableElements) {
+    arrayTabIndex.push(focusableElement.getAttribute('tabindex'));
+}
+
 window.addEventListener('load', function () {
     if (document.location.hash === '#donate') {
         document.location.hash = '';
-        donateCheckbox.checked = true;
-        checkboxChange();
+        checkboxChange(true);
     } else if (document.location.hash) {
         window.scrollTo({
             top: document.querySelector(document.location.hash).offsetTop - headerHeight,
@@ -36,11 +42,39 @@ function refreshHeaderHeight() {
     }
 }
 
-function checkboxChange() {
+function checkboxChange(boolean) {
+    if (boolean !== undefined) {
+        donateCheckbox.checked = boolean;
+    }
     if (donateCheckbox.checked) {
+        document.getElementById('hamburger-btn').checked = false;
         document.body.style.overflowY = 'hidden';
+        for (let i = 0; i < focusableElements.length; i++) {
+            let focusableElement = focusableElements[i];
+            if (focusableElementsWithinAside.indexOf(focusableElement) === -1) {
+                focusableElement.setAttribute('tabindex', '-1');
+            } else {
+                if (arrayTabIndex[i]) {
+                    focusableElement.setAttribute('tabindex', arrayTabIndex[i]);
+                } else {
+                    focusableElement.removeAttribute('tabindex');
+                }
+            }
+        }
     } else {
         document.body.style.overflowY = 'visible';
+        for (let i = 0; i < focusableElements.length; i++) {
+            let focusableElement = focusableElements[i];
+            if (focusableElementsWithinAside.indexOf(focusableElement) === -1) {
+                if (arrayTabIndex[i]) {
+                    focusableElement.setAttribute('tabindex', arrayTabIndex[i]);
+                } else {
+                    focusableElement.removeAttribute('tabindex');
+                }
+            } else {
+                focusableElement.setAttribute('tabindex', '-1');
+            }
+        }
     }
 }
 
@@ -84,8 +118,13 @@ for (let hash of document.querySelectorAll('a[href^="#"]')) {
     });
 }
 
-document.querySelector('#open-donate-menu label').addEventListener('click', function () {
-    document.getElementById('hamburger-btn').checked = false;
+window.addEventListener('keyup', function (e) {
+    if ((e.keyCode === 27 || e.key === 'Escape') && donateCheckbox.checked) {
+        checkboxChange(false);
+    }
+    if ((e.keyCode === 13 || e.key === 'Enter') && document.activeElement.nodeName === 'LABEL') {
+        document.activeElement.click();
+    }
 });
 
 donateCheckbox.addEventListener('change', function () {
@@ -94,7 +133,15 @@ donateCheckbox.addEventListener('change', function () {
 
 aside.addEventListener('click', function (e) {
     if (e.target === aside) {
-        donateCheckbox.checked = false;
-        checkboxChange();
+        checkboxChange(false);
     }
 });
+
+// A supprimer
+
+for (let emptyHref of document.querySelectorAll('a[href=""]')) {
+    emptyHref.addEventListener('click', function (e) {
+        e.preventDefault();
+        alert('Ce lien est temporairement indisponible');
+    });
+}
