@@ -75,6 +75,7 @@ function checkboxChange(boolean) {
                 focusableElement.setAttribute('tabindex', '-1');
             }
         }
+        document.querySelector('#smart-button-container #payment-error').style.display = "none";
     }
 }
 
@@ -93,7 +94,7 @@ const handleIntersect = function (entries) {
     entries.forEach(function (entry) {
         if (entry.isIntersecting) {
             document.getElementById('active-page').removeAttribute('id');
-            document.querySelector('nav a[href="#' + entry.target.id + '"]').parentNode.id = 'active-page';
+            document.querySelector(`nav a[href="#${entry.target.id}"]`).parentNode.id = 'active-page';
         }
     });
 }

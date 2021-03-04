@@ -8,6 +8,23 @@
 
 html {
     scroll-behavior: smooth;
+    cursor: url(/ressources/cursors/default.cur), auto;
+}
+
+h1, h2, h3, h4, h5, h6, p, input, textarea {
+    cursor: url(/ressources/cursors/text.cur), text;
+}
+
+a, button, label {
+    cursor: url(/ressources/cursors/pointer.cur), pointer;
+}
+
+aside, aside h1, aside h2, aside h3, aside h4, aside h5, aside h6, aside p, aside input, aside textarea, aside a {
+    cursor: auto;
+}
+
+aside button, aside label {
+    cursor: pointer;
 }
 
 body {
@@ -48,10 +65,6 @@ em {
     margin: 10px 0 5px;
 }
 
-label {
-    cursor: pointer;
-}
-
 .label-container {
     display: flex;
 }
@@ -76,6 +89,48 @@ label {
     background-color: #fff;
     border: solid 4px red;
     border-radius: 20px;
+}
+
+.link {
+    position: relative;
+    background-image: linear-gradient(to right, transparent 50%, #BF3BC7 50%, #F88FFF);
+    background-size: 200% 100%;
+    background-position: 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.link::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 2px;
+    height: 2px;
+    width: 100%;
+    background-image: inherit;
+    background-size: inherit;
+    background-position: inherit;
+    z-index: -1;
+}
+
+.link:hover::after {
+    animation: underline-effect 1s;
+}
+
+@keyframes underline-effect {
+    0% {
+        background-position: 100%;
+    }
+    50.525% {
+        background-position: 0;
+    }
+    50.526% {
+        background-position: 200%;
+    }
+    100% {
+        background-position: 100%;
+    }
 }
 
 /* ----- Header ----- */
@@ -219,34 +274,27 @@ label[for=hamburger-btn] span {
 .btn {
     color: white;
     font-weight: bold;
-    background-color: #FAB0FF;
+    background-color: #F88FFF;
     padding: 8px 20px;
     border-radius: 5px;
     font-size: 1.2em;
     position: relative;
     overflow: hidden;
-    z-index: 1;
+    border-bottom: 4px solid #BF3BC7;
 }
 
-.btn::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: -1;
-    opacity: 0;
-    transition: opacity .35s;
-    background-color: #F88FFF;
+.btn:hover {
+    margin-top: 1px;
+    border-bottom-width: 3px;
 }
 
-.btn:hover::before {
-    opacity: 1;
+.btn:active {
+    margin-top: 4px;
+    border-bottom-width: 0;
 }
 
 h1 {
-    font-family: 'Luckiest Guy', cursive;
+    font-family: 'Fugaz One', cursive;
     text-align: center;
     font-size: 64px;
     text-shadow: 0 0 5px white;
@@ -479,6 +527,81 @@ footer a:hover svg circle, footer label:hover svg circle {
     fill: white;
 }
 
+/* ----- PayPal ----- */
+
+#smart-button-container {
+    margin-top: 30px;
+    width: 60%;
+}
+
+#smart-button-container div {
+    text-align: center;
+}
+
+#payment-error {
+    display: none;
+    color:red;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 14px;
+}
+
+#paypal-button-container {
+    margin-top: 14px;
+}
+
+#amount {
+    width: 100%;
+    width: calc(100% + 25.5px);
+    font-size: 18px;
+    padding: 15px 20px;
+    background-color: #dadadc;
+    color: #585858;
+    border: none;
+    text-align: center;
+    grid-area: 1 / 1 / span 1 / span 2;
+}
+
+#amount:focus {
+    outline: none;
+}
+
+#amount::placeholder {
+    color: #a1a1a1;
+}
+
+#amount-container {
+    overflow: hidden;
+    border-radius: 4px;
+    display: grid;
+    justify-items: end;
+    grid-template: auto / 1fr 51px;
+}
+
+#amount-container:focus-within {
+    outline: solid 2px;
+    outline: -webkit-focus-ring-color auto 1px;
+}
+
+#amount-container > span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 30px;
+    background-color: #bfbfbf;
+    grid-area: 1 / 2 / span 1 / span 1;
+}
+
+.payment-success {
+    background-color: rgba(142, 189, 126, .5);
+    border: 1px solid rgb(142, 189, 126);
+    border-radius: 6px;
+    padding: 25px 40px;
+    margin: 30px 0;
+    display: none;
+}
+
 /* ----- Medias queries ----- */
 
 @media screen and (max-width: 1450px) {
@@ -578,9 +701,14 @@ footer a:hover svg circle, footer label:hover svg circle {
         padding: 0;
         background-color: unset;
         font-weight: normal;
+        border: none;
     }
-    #open-donate-menu label > span::before {
+    #open-donate-menu label > span::after {
         display: none;
+    }
+    #open-donate-menu label > span:hover, #open-donate-menu label > span:active {
+        margin-top: initial;
+        padding-bottom: initial;
     }
     nav li {
         margin: 4px 0;
