@@ -3,9 +3,49 @@ function initPayPalButton() {
     var amount = document.querySelector('#smart-button-container #amount');
     var paymentError = document.querySelector('#smart-button-container #payment-error');
     var elArr = [amount];
+    var actionsEnabled = false;
+    var lang = 'fr';
+    if (window.location.pathname.startsWith('/en')) {
+        lang = 'en';
+    }
 
     function validate(event) {
         return !(event.value < 1);
+    }
+
+    var text = [
+        {
+            fr: "Vous devez entrer un nombre.",
+            en: "You must enter a number."
+        },
+        {
+            fr: "Vous ne pouvez pas donner moins de 1€.",
+            en: "You cannot donate less than 1€."
+        },
+        {
+            fr: "Le paiement a été annulé !",
+            en: "The payment has been cancelled !"
+        },
+        {
+            fr: "Merci <strong>${details.payer.name.given_name}</strong>, vous venez de faire un don à <strong>New Vision Games</strong> d'un montant de <strong>${details.purchase_units[0].amount.value}€</strong>. Vous recevrez bientôt un mail de PayPal confirmant votre achat.",
+            en: "Thank you <strong>${details.payer.name.given_name}</strong>, you have just donated <strong>${details.purchase_units[0].amount.value}€</strong> to <strong>New Vision Games</strong>. You will soon receive an email from PayPal confirming your purchase."
+        }
+    ];
+    
+    function getTextWithVars(text, details) {
+        while (text.indexOf('}') > -1) {
+            text = text.replace('}', '$');
+        }
+        text = text.split('$');
+        let finalText = '';
+        for (let string of text) {
+            if (string.startsWith('{')) {
+                string = string.substr(1, string.length);
+                string = eval(string);
+            }
+            finalText += string;
+        }
+        return finalText;
     }
 
     paypal.Buttons({
@@ -16,21 +56,33 @@ function initPayPalButton() {
         layout: 'vertical',
         },
         onInit: function (data, actions) {
-            actions.disable();
+            function enableActions(boolean) {
+                if (boolean) { actions.enable(); } else { actions.disable(); }
+                actionsEnabled = boolean;
+            }
+            enableActions(false);
             elArr[0].addEventListener('keyup', function (event) {
                 var result = elArr.every(validate);
                 if (result) {
-                    actions.enable();
-                    paymentError.style.display = "none";
+                    if (isNaN(amount.value)) {
+                        enableActions(false);
+                        paymentError.textContent = text[0][lang];
+                        paymentError.style.display = "block";
+                    } else {
+                        enableActions(true);
+                        paymentError.style.display = "none";
+                    }
                 } else {
-                    actions.disable();
-                    paymentError.textContent = 'Vous ne pouvez pas donner moins de 1€.';
+                    enableActions(false);
+                    paymentError.textContent = text[1][lang];
                     paymentError.style.display = "block";
                 }
             });
         },
         onClick: function () {
-            paymentError.style.display = "none";
+            if (actionsEnabled) {
+                paymentError.style.display = "none";
+            }
         },
         createOrder: function (data, actions) {
             return actions.order.create({
@@ -38,13 +90,13 @@ function initPayPalButton() {
             });
         },
         onCancel: function(data, actions) {
-            paymentError.textContent = 'Le paiement a été annulé !';
+            paymentError.textContent = text[2][lang];
             paymentError.style.display = "block";
         },
         onApprove: function (data, actions) {
             return actions.order.capture().then(function (details) {
                 document.getElementById('smart-button-container').style.display = 'none';
-                document.querySelector('.payment-success p').innerHTML = `Merci <strong>${details.payer.name.given_name}</strong>, vous venez de faire un don à <strong>New Vision Games</strong> d'un montant de <strong>${details.purchase_units[0].amount.value}€</strong>. Vous recevrez bientôt un mail de PayPal confirmant votre achat.`;
+                document.querySelector('.payment-success p').innerHTML = getTextWithVars(text[3][lang], details);
                 document.querySelector('.payment-success').style.display = 'block';
             });
         }

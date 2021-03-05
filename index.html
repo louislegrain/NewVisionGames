@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <!-- A ajouter : Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1JVFZXETYX"></script>
+    <script src="/google-analytics.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Vision Games</title>
-    <meta name="description" content="Nous sommes 17 jeunes entrepreneurs et nous avons décidé de créer un jeu vidéo afin de sensibiliser et aider à combattre le cancer ! Vous incarnez le personnage d'Oscar, meilleur ami de Julie et l'accompagnez dans l'évolution de sa maladie." />
-    <link rel="canonical" href="https://newvisiongames.com/" />
+    <meta name="description" content="Nous sommes 17 jeunes entrepreneurs et nous avons décidé de créer un jeu vidéo afin de sensibiliser et aider à combattre le cancer ! Vous incarnez le meilleur ami de Juliette et l'accompagnez dans l'évolution de sa maladie." />
+    <link rel="canonical" href="https://www.newvisiongames.com/" />
     <meta property="og:site_name" content="New Vision Games" />
 	<meta property="og:locale" content="fr_FR">
 	<meta property="og:title" content="New Vision Games"/>
 	<meta property="og:type" content="website"/>
-	<meta property="og:url" content="https://newvisiongames.com/"/>
-	<!-- <meta property="og:image" content="https://newvisiongames.com/"/> -->
-	<!-- <meta property="og:image:alt" content="" /> -->
-	<meta property="og:description" content="Nous sommes 17 jeunes entrepreneurs et nous avons décidé de créer un jeu vidéo afin de sensibiliser et aider à combattre le cancer ! Vous incarnez le personnage d'Oscar, meilleur ami de Julie et l'accompagnez dans l'évolution de sa maladie."/>
+	<meta property="og:url" content="https://www.newvisiongames.com/"/>
+	<meta property="og:image" content="https://www.newvisiongames.com/ressources/og_image.jpg"/>
+	<meta property="og:image:alt" content="Logo de New Vision Games" />
+	<meta property="og:description" content="Nous sommes 17 jeunes entrepreneurs et nous avons décidé de créer un jeu vidéo afin de sensibiliser et aider à combattre le cancer ! Vous incarnez le meilleur ami de Juliette et l'accompagnez dans l'évolution de sa maladie."/>
     <link rel="stylesheet" href="/style.css">
     <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Yantramanav&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
@@ -63,9 +66,8 @@
         <div class="float-container">
             <img src="https://image.freepik.com/photos-gratuite/portrait-equipe-jeunes-entrepreneurs-au-travail-petite-entreprise-creative-contemporaine-lumineuse_186451-14.jpg" alt="Photo de toute l'équipe de la mini-entreprise">
             <p>
-                Mais qui sommes-nous?<br>
-                Nous sommes 17 jeunes entrepreneurs et nous avons décidé de créer un jeu vidéo.<br>
-                Depuis tout petits, nous apprenons à parler, à lire, à écrire, à nous révolter mais jamais à agir. C'est ce qui nous a motivé à créer ce jeu vidéo dans le but de soutenir les victimes de cancers.<br>
+                Qui sommes-nous? Nous sommes 17 jeunes entrepreneurs et nous avons décidé de créer un <strong>jeu vidéo</strong>.<br>
+                La mini-entreprise, c'est une matière optionnelle proposée par notre lycée à tous les élèves de seconde et qui nous réunit chaque mercredi pendant 1h30 où nous devons créer en équipe un projet. Le but est de vendre un produit ou un service en passant par les étapes de l'analyse du marché, contacter des fournisseurs, échanger avec des professionnels etc. puis de <strong>reverser tous les bénéfices à une association</strong> à la fin de l'année. Le défi est donc de trouver une idée réalisable en environ 6 mois et qui fait du sens avec l'association choisie. Tout commence donc en septembre 2020 quand nous devons choisir ce que nous voulons vendre. Très vite nous nous mettons d'accord : les bénéfices réalisés iront à l'association <a class="link" href="https://imagineformargo.org/" target="_blank"><em>Imagine for Margo</em></a> qui [...]. Reste encore à trouver le produit que nous allons vendre. C'est alors que nous est venue l'idée de créer un jeu vidéo sous forme de <strong>Visual Novel</strong> (un jeu de choix où l'on incarne un personnage et l'histoire change en fonction des choix faits par le joueur) pour sensibiliser à la maladie en incarnant le meilleur ami de Juliette, jeune fille atteinte d'une leucémie.<br>
                 La meilleure façon de nous aider c'est de donner et/ou de jouer !
             </p>
         </div>
@@ -125,7 +127,7 @@
             <div id="smart-button-container">
                 <div>
                     <div id="amount-container">
-                        <input name="amountInput" type="number" id="amount" min="1" max="999999" maxlength="5" placeholder="10" onkeydown="if (event.keyCode === 69 || event.keyCode === 188 || event.keyCode === 190 || event.keyCode === 48 || event.keyCode === 49 || event.keyCode === 50 || event.keyCode === 51 || event.keyCode === 52 || event.keyCode === 53 || event.keyCode === 54 || event.keyCode === 55 || event.keyCode === 56 || event.keyCode === 57) { return this.value.length < 6; }">
+                        <input name="amountInput" type="number" id="amount" min="1" max="999999" placeholder="10" onkeydown="if (event.keyCode === 69 || event.keyCode === 188 || event.keyCode === 190 || event.keyCode === 48 || event.keyCode === 49 || event.keyCode === 50 || event.keyCode === 51 || event.keyCode === 52 || event.keyCode === 53 || event.keyCode === 54 || event.keyCode === 55 || event.keyCode === 56 || event.keyCode === 57) { return this.value.length < 6; }">
                         <span>€</span>
                     </div>
                 </div>
