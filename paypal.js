@@ -27,26 +27,10 @@ function initPayPalButton() {
             en: "The payment has been cancelled !"
         },
         {
-            fr: "Merci <strong>${details.payer.name.given_name}</strong>, vous venez de faire un don à <strong>New Vision Games</strong> d'un montant de <strong>${details.purchase_units[0].amount.value}€</strong>. Vous recevrez bientôt un mail de PayPal confirmant votre achat.",
-            en: "Thank you <strong>${details.payer.name.given_name}</strong>, you have just donated <strong>${details.purchase_units[0].amount.value}€</strong> to <strong>New Vision Games</strong>. You will soon receive an email from PayPal confirming your purchase."
+            fr: "`Merci <strong>${details.payer.name.given_name}</strong>, vous venez de faire un don à <strong>New Vision Games</strong> d'un montant de <strong>${details.purchase_units[0].amount.value}€</strong>. Vous recevrez bientôt un mail de PayPal confirmant votre achat.`",
+            en: "`Thank you <strong>${details.payer.name.given_name}</strong>, you have just donated <strong>${details.purchase_units[0].amount.value}€</strong> to <strong>New Vision Games</strong>. You will soon receive an email from PayPal confirming your purchase.`"
         }
     ];
-    
-    function getTextWithVars(text, details) {
-        while (text.indexOf('}') > -1) {
-            text = text.replace('}', '$');
-        }
-        text = text.split('$');
-        let finalText = '';
-        for (let string of text) {
-            if (string.startsWith('{')) {
-                string = string.substr(1, string.length);
-                string = eval(string);
-            }
-            finalText += string;
-        }
-        return finalText;
-    }
 
     paypal.Buttons({
         style: {
@@ -78,6 +62,7 @@ function initPayPalButton() {
                     paymentError.style.display = "block";
                 }
             });
+            document.querySelector('.load-container').style.display = 'none';
         },
         onClick: function () {
             if (actionsEnabled) {
@@ -96,7 +81,7 @@ function initPayPalButton() {
         onApprove: function (data, actions) {
             return actions.order.capture().then(function (details) {
                 document.getElementById('smart-button-container').style.display = 'none';
-                document.querySelector('.payment-success p').innerHTML = getTextWithVars(text[3][lang], details);
+                document.querySelector('.payment-success p').innerHTML = eval(text[3][lang]);
                 document.querySelector('.payment-success').style.display = 'block';
             });
         }

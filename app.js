@@ -14,6 +14,18 @@ for (let focusableElement of focusableElements) {
     arrayTabIndex.push(focusableElement.getAttribute('tabindex'));
 }
 
+let textLang = 'fr';
+if (window.location.pathname.startsWith('/en')) {
+    textLang = 'en';
+}
+
+let textTraduction = [
+    {
+        fr: "Le jeu n'est pas encore disponible sur cette platforme.",
+        en: "The game is not yet available on this platform."
+    }
+];
+
 window.addEventListener('load', function () {
     if (document.location.hash === '#donate') {
         document.location.hash = '';
@@ -143,6 +155,6 @@ aside.addEventListener('click', function (e) {
 for (let emptyHref of document.querySelectorAll('a[href=""]')) {
     emptyHref.addEventListener('click', function (e) {
         e.preventDefault();
-        alert('Ce lien est temporairement indisponible');
+        alert(textTraduction[0][textLang]);
     });
 }

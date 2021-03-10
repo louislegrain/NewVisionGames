@@ -19,11 +19,11 @@ a, button, label {
     cursor: url(/ressources/cursors/pointer.cur), pointer;
 }
 
-aside, aside h1, aside h2, aside h3, aside h4, aside h5, aside h6, aside p, aside input, aside textarea, aside a {
+aside, aside h1, aside h2, aside h3, aside h4, aside h5, aside h6, aside p, aside input, aside textarea {
     cursor: auto;
 }
 
-aside button, aside label {
+aside button, aside label, aside a {
     cursor: pointer;
 }
 
@@ -56,6 +56,7 @@ em {
 .important {
     font-weight: bold !important;
     font-size: 1.45em !important;
+    text-align: left !important;
     margin: 20px 0;
 }
 
@@ -92,6 +93,7 @@ em {
 }
 
 .link {
+    font-style: italic;
     color: #BF3BC7;
     background-image: linear-gradient(to right, transparent 50%, #BF3BC7 50%, #F88FFF);
     background-size: 200% 2px;
@@ -314,9 +316,9 @@ h1::after {
     right: -10px;
     bottom: -10px;
     left: -10px;
-    background-image: url(https://cdn.cloudflare.steamstatic.com/steam/apps/345370/ss_058ca72c66aac8a3cb88e518ffd75c86c363efe6.1920x1080.jpg?t=1597353918);
+    background-image: url(/ressources/game_preview.jpg);
     background-size: cover;
-    background-position: center;
+    background-position: top;
     background-repeat: no-repeat;
     filter: blur(2px) brightness(0.9);
     z-index: -1;
@@ -324,6 +326,8 @@ h1::after {
 
 section:not(#home) {
     padding: 25px 120px;
+    max-width: 1800px;
+    margin: 0 auto;
 }
 
 h2 {
@@ -341,7 +345,7 @@ h2 {
 .float-container > img {
     float: left;
     width: 50%;
-    margin: 0 30px 15px 0;
+    margin: 0 24px 15px 0;
 }
 
 .float-container {
@@ -587,6 +591,42 @@ footer a:hover svg circle, footer label:hover svg circle {
     padding: 25px 40px;
     margin: 30px 0;
     display: none;
+}
+
+#paypal-button-container {
+    position: relative;
+    min-height: 120px;
+}
+
+.load-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.load-container > div {
+    height: 100px;
+    width: 100px;
+    border: #FBC7FF solid 14px;
+    border-top-color: #F88FFF;
+    border-radius: 50%;
+    animation: spin .5s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /* ----- Medias queries ----- */

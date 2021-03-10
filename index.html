@@ -64,22 +64,25 @@
     <section id="about">
         <h2>A propos</h2>
         <div class="float-container">
-            <img src="https://image.freepik.com/photos-gratuite/portrait-equipe-jeunes-entrepreneurs-au-travail-petite-entreprise-creative-contemporaine-lumineuse_186451-14.jpg" alt="Photo de toute l'équipe de la mini-entreprise">
+            <img src="/ressources/mini_entreprise.jpg" alt="Photo de toute l'équipe de la mini-entreprise">
             <p>
-                Qui sommes-nous? Nous sommes 17 jeunes entrepreneurs et nous avons décidé de créer un <strong>jeu vidéo</strong>.<br>
-                La mini-entreprise, c'est une matière optionnelle proposée par notre lycée à tous les élèves de seconde et qui nous réunit chaque mercredi pendant 1h30 où nous devons créer en équipe un projet. Le but est de vendre un produit ou un service en passant par les étapes de l'analyse du marché, contacter des fournisseurs, échanger avec des professionnels etc. puis de <strong>reverser tous les bénéfices à une association</strong> à la fin de l'année. Le défi est donc de trouver une idée réalisable en environ 6 mois et qui fait du sens avec l'association choisie. Tout commence donc en septembre 2020 quand nous devons choisir ce que nous voulons vendre. Très vite nous nous mettons d'accord : les bénéfices réalisés iront à l'association <a class="link" href="https://imagineformargo.org/" target="_blank"><em>Imagine for Margo</em></a> qui [...]. Reste encore à trouver le produit que nous allons vendre. C'est alors que nous est venue l'idée de créer un jeu vidéo sous forme de <strong>Visual Novel</strong> (un jeu de choix où l'on incarne un personnage et l'histoire change en fonction des choix faits par le joueur) pour sensibiliser à la maladie en incarnant le meilleur ami de Juliette, jeune fille atteinte d'une leucémie.<br>
-                La meilleure façon de nous aider c'est de donner et/ou de jouer !
+                Qui sommes-nous ? Nous sommes 17 jeunes entrepreneurs et nous avons décidé de créer un <strong>jeu vidéo</strong>.<br>
+                <strong>La mini-entreprise</strong>, c'est une matière optionnelle proposée par notre lycée à tous les élèves de seconde et qui nous réunit chaque mercredi pendant 1h30 où nous devons créer en équipe un projet. Le but est de vendre un produit ou un service en passant par les étapes de l'analyse du marché, contacter des fournisseurs, échanger avec des professionnels etc. puis de <strong>reverser tous les bénéfices à une association</strong> à la fin de l'année. Le défi est donc de trouver une idée réalisable en environ 6 mois et qui fait du sens par rapport à l'association choisie. Tout commence donc en septembre 2020 quand nous devons choisir ce que nous voulons vendre. Très vite nous nous mettons d'accord : les bénéfices réalisés iront à l'association <a class="link" href="https://imagineformargo.org/" target="_blank">Imagine for Margo</a> qui mène des actions de sensibilisation et de collecte de fonds afin d'aider la recherche européenne et pour aider au quotidien les enfants atteints de cancer. Reste encore à trouver le produit que nous allons vendre. C'est alors que nous est venue l'idée de créer un jeu vidéo sous forme de <strong>Visual Novel</strong> (un jeu de choix où l'on incarne un personnage et l'histoire change en fonction des choix faits par le joueur) pour sensibiliser à la maladie en incarnant le meilleur ami de Juliette, jeune fille atteinte d'une leucémie.<br>
+                La meilleure façon de nous aider c'est de <strong>donner</strong> et/ou de <strong>jouer</strong> !
             </p>
         </div>
     </section>
     <section id="download">
         <h2>Télécharger le jeu</h2>
         <div class="float-container">
-            <img src="/ressources/game_preview.png" alt="Play Against Cancer sur un Macbook">
+            <img src="/ressources/game_preview_on_macbook.png" alt="Play Against Cancer sur un Macbook">
             <p>
                 Découvrez la vie d'un enfant atteint du <strong>cancer</strong> à travers l'histoire de Juliette, jeune fille atteinte d'une leucémie.<br>
                 <strong>Play Against Cancer</strong> est un <em>visual novel</em>, c'est-à-dire un jeu de choix où vous incarnez le meilleur ami de Juliette et suivez l'évolution de sa maladie.<br>
-                Tous les bénéfices réalisés seront directement reversés à l'association <a class="link" href="https://imagineformargo.org/" target="_blank"><em>Imagine for Margo</em></a>.
+                Tous les bénéfices réalisés seront directement reversés à l'association <a class="link" href="https://imagineformargo.org/" target="_blank">Imagine for Margo</a>.
+            </p>
+            <p class="important">
+                Lancement prévu le 17 mars
             </p>
             <p class="important">
                 Prix : 4.99 €
@@ -122,7 +125,7 @@
             <label tabindex="0" for="donate" class="label-container"><span tabindex="-1">Fermer</span></label>
             <h2>Faire un don</h2>
             <p>
-                <strong>Aidez</strong> la mini-entreprise et les enfants atteints de cancer en faisant <strong>un don</strong> !
+                Faites <strong>un don</strong> pour aider la <strong>mini-entreprise</strong> ! A la fin de l'année, tous les bénéfices seront reversés à l'association <a class="link" href="https://imagineformargo.org/" target="_blank">Imagine for Margo</a>.
             </p>
             <div id="smart-button-container">
                 <div>
@@ -132,7 +135,11 @@
                     </div>
                 </div>
                 <p id="payment-error">Vous ne pouvez pas donner moins de 1€.</p>
-                <div id="paypal-button-container"></div>
+                <div id="paypal-button-container">
+                    <div class="load-container">
+                        <div></div>
+                    </div>
+                </div>
             </div>
             <div class="payment-success">
                 <p>
@@ -142,7 +149,7 @@
         </div>
     </aside>
     <script src="/app.js"></script>
-    <script src="https://www.paypal.com/sdk/js?client-id=AQjScuKv1PfQxk6eyhv_cLV3T9R01ZkESAnGzaufY6VkYAYULSn3qtuziWu0Zi8455rrXe-w57btDn_w&currency=EUR" data-sdk-integration-source="button-factory"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=AZ8j_m1Z3-ETzGcPYExtJcjufjucZxmPmC08heBgkvyiMEGwJuPiikpdWYNkjDpvXGrBrc1sh1X0MS3J&currency=EUR&locale=fr_FR" data-sdk-integration-source="button-factory"></script>
     <script src="/paypal.js"></script>
 </body>
 </html>
